@@ -11,11 +11,11 @@ public class ZookeeperAuthSample implements Watcher{
     public static void main(String[] args) {
         try {
             ZooKeeper zooKeeper =
-                    new ZooKeeper("192.168.0.138:2181",5000,new ZookeeperAuthSample());
+                    new ZooKeeper("192.168.112.144:2181",5000,new ZookeeperAuthSample());
             System.out.println(zooKeeper.getState());
             connectedSemapthore.await();
             System.out.println("zookeeper session created");
-            zooKeeper.addAuthInfo("digest","foo:true".getBytes());
+            zooKeeper.addAuthInfo("digest","username:password".getBytes());
 
             String path = zooKeeper.create("/zk-auth-test","value".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.EPHEMERAL);
 
@@ -23,13 +23,13 @@ public class ZookeeperAuthSample implements Watcher{
             System.out.println(new String(data));
 
             //使用未添加权限信息或错误权限信息zookeeper 访问有权限的节点
-            ZooKeeper zooKeeper2 = new ZooKeeper("192.168.0.138:2181",5000,new ZookeeperAuthSample());
+            ZooKeeper zooKeeper2 = new ZooKeeper("192.168.112.144:2181",5000,new ZookeeperAuthSample());
             connectedSemapthore = new CountDownLatch(1);
             connectedSemapthore.await();
             System.out.println("zookeeper session2 created");
 
             //使用错误权限信息
-            //zooKeeper.addAuthInfo("digest","foo:tru".getBytes());
+            zooKeeper.addAuthInfo("digest","foo:tru".getBytes());
             byte[] data2 = zooKeeper2.getData(path,false,null);
             System.out.println(new String(data2));
         } catch (IOException e) {

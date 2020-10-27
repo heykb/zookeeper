@@ -10,7 +10,7 @@ public class CreatSessionSample {
         //创建重试策略
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000,3);
         CuratorFramework client = CuratorFrameworkFactory.
-                newClient("192.168.0.138:2181",5000,3000,retryPolicy);
+                newClient("192.168.112.144:2181",5000,3000,retryPolicy);
         client.start();
         Thread.sleep(Integer.MAX_VALUE);
 

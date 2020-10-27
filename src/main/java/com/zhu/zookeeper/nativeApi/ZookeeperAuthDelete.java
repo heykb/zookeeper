@@ -4,25 +4,25 @@ import org.apache.zookeeper.*;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
-
+// 删除节点权限控制针对的是子节点 比较特殊
 public class ZookeeperAuthDelete implements Watcher{
 
     private static CountDownLatch connectedSemapthore = new CountDownLatch(1);
     public static void main(String[] args) {
         try {
             ZooKeeper zooKeeper =
-                    new ZooKeeper("192.168.0.138:2181",5000,new ZookeeperAuthDelete());
+                    new ZooKeeper("192.168.112.144:2181",5000,new ZookeeperAuthDelete());
             System.out.println(zooKeeper.getState());
             connectedSemapthore.await();
             System.out.println("zookeeper session created");
-            zooKeeper.addAuthInfo("digest","foo:true".getBytes());
+            zooKeeper.addAuthInfo("digest","username:password".getBytes());
 
             String pathP = zooKeeper.create("/zk-auth-delete","value".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.PERSISTENT_SEQUENTIAL);
             String pathC = zooKeeper.create(pathP+"/c1","value".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.EPHEMERAL);
 
 
             //使用未添加权限信息或错误权限信息zookeeper 删除有权限的节点
-            ZooKeeper zooKeeper2 = new ZooKeeper("192.168.0.138:2181",5000,new ZookeeperAuthDelete());
+            ZooKeeper zooKeeper2 = new ZooKeeper("192.168.112.144:2181",5000,new ZookeeperAuthDelete());
             connectedSemapthore = new CountDownLatch(1);
             connectedSemapthore.await();
             System.out.println("zookeeper session2 created");

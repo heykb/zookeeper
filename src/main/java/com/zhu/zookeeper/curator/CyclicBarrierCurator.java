@@ -44,7 +44,7 @@ public class CyclicBarrierCurator {
         public void run() {
             try {
                 CuratorFramework client = CuratorFrameworkFactory.builder()
-                        .connectString("192.168.0.138:2181")
+                        .connectString("192.168.112.144:2181")
                         .retryPolicy(new ExponentialBackoffRetry(1000,5))
                         /* //有密码的人才能加入此次赛跑
                          .authorization("digest","foo:true".getBytes())*/

@@ -13,7 +13,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 public class MasterNodeListener {
 
     static CuratorFramework client = CuratorFrameworkFactory.builder()
-            .connectString("192.168.0.138:2181")
+            .connectString("192.168.112.144:2181")
             .sessionTimeoutMs(5000)
             .connectionTimeoutMs(3000)
             .retryPolicy(new ExponentialBackoffRetry(1000,3))

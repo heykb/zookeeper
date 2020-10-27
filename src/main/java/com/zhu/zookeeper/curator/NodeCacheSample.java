@@ -11,7 +11,7 @@ import org.apache.zookeeper.CreateMode;
 public class NodeCacheSample {
 
     static CuratorFramework client = CuratorFrameworkFactory.builder()
-            .connectString("192.168.0.138:2181")
+            .connectString("192.168.112.144:2181")
             .sessionTimeoutMs(5000)
             .connectionTimeoutMs(3000)
             .retryPolicy(new ExponentialBackoffRetry(1000,3))
@@ -28,7 +28,6 @@ public class NodeCacheSample {
             public void nodeChanged() throws Exception {
 
                 if( nodeCache.getCurrentData() != null){
-
                     System.out.println(nodeCache.getPath()+" changed: " + new String(nodeCache.getCurrentData().getData()));
                 }else{
                     System.out.println(nodeCache.getPath()+" deleted");

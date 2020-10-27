@@ -7,7 +7,7 @@ import org.apache.zookeeper.Watcher;
 
 public class GetData {
     public static void main(String[] args) throws Exception {
-        ZkClient zkClient = new ZkClient("192.168.0.138:2181",20000);
+        ZkClient zkClient = new ZkClient("192.168.112.144:2181",20000);
         System.out.println("zookeeper session created");
         String path = "/zk-data";
         zkClient.createEphemeral(path,"123");

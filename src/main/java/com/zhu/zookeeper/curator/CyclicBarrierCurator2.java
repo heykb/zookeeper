@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-//distributedDoubleBarrier,几个人互相等待一起做，然后做完再互相等待， 一起离开
+//distributedDoubleBarrier,同时开始 同时离开
 public class CyclicBarrierCurator2 {
 
     public static String path = "/distributed_barrier";
@@ -34,7 +34,7 @@ public class CyclicBarrierCurator2 {
         public void run() {
             try {
                 CuratorFramework client = CuratorFrameworkFactory.builder()
-                        .connectString("192.168.0.138:2181")
+                        .connectString("192.168.112.144:2181")
                         .retryPolicy(new ExponentialBackoffRetry(1000,5))
                         /* //有密码的人才能加入此次赛跑
                          .authorization("digest","foo:true".getBytes())*/

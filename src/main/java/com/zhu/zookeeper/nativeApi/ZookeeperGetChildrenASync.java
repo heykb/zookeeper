@@ -15,7 +15,7 @@ public class ZookeeperGetChildrenASync implements Watcher {
     public static void main(String[] args) {
         try {
             zooKeeper =
-                    new ZooKeeper("192.168.0.138:2181",5000,new ZookeeperGetChildrenASync());
+                    new ZooKeeper("192.168.112.144:2181",5000,new ZookeeperGetChildrenASync());
 
             System.out.println(zooKeeper.getState());
             connectedSemapthore.await();
@@ -58,6 +58,7 @@ public class ZookeeperGetChildrenASync implements Watcher {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
             }
 
         }

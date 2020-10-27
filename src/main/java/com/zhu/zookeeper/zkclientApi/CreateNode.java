@@ -9,7 +9,7 @@ import java.util.List;
 public class CreateNode {
     public static void main(String[] args) {
         try {
-            ZkClient zkClient = new ZkClient("192.168.0.138:2181",20000);
+            ZkClient zkClient = new ZkClient("192.168.112.144:2181",20000);
             System.out.println("zookeeper session created");
 
             List<String> childrenList = zkClient.getChildren("/");

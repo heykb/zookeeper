@@ -13,7 +13,7 @@ public class ZookeeperConstructorUsageWithSidPasswd implements Watcher {
     public static void main(String[] args) {
         try {
             ZooKeeper zooKeeper =
-                    new ZooKeeper("192.168.0.138:2181",5000,new ZookeeperConstructorUsageWithSidPasswd());
+                    new ZooKeeper("192.168.112.144:2181",5000,new ZookeeperConstructorUsageWithSidPasswd());
 
             System.out.println(zooKeeper.getState());
             connectedSemapthore.await();
@@ -22,11 +22,11 @@ public class ZookeeperConstructorUsageWithSidPasswd implements Watcher {
             byte[] passwd = zooKeeper.getSessionPasswd();
 
             //指定sessionId和session passwd复用会话
-            zooKeeper = new ZooKeeper("192.168.0.138:2181",5000,
+            zooKeeper = new ZooKeeper("192.168.112.144:2181",5000,
                     new ZookeeperConstructorUsageWithSidPasswd(),
                     1L,"test".getBytes());
             //指定sessionId和session passwd复用会话
-            zooKeeper = new ZooKeeper("192.168.0.138:2181",5000,
+            zooKeeper = new ZooKeeper("192.168.112.144:2181",5000,
                     new ZookeeperConstructorUsageWithSidPasswd(),
                     sessionId,passwd);
             Thread.sleep(Integer.MAX_VALUE);

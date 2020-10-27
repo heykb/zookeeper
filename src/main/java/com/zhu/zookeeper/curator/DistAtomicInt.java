@@ -8,10 +8,14 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.retry.RetryNTimes;
 ;
 
+/**
+ * 分布式计数器
+ * @author heykb
+ */
 public class DistAtomicInt {
 
     static CuratorFramework client = CuratorFrameworkFactory.builder()
-            .connectString("192.168.0.138:2181")
+            .connectString("192.168.112.144:2181")
             .sessionTimeoutMs(5000)
             .connectionTimeoutMs(3000)
             .retryPolicy(new ExponentialBackoffRetry(1000,3))

@@ -15,7 +15,7 @@ public class ZookeeperGetDataASync implements Watcher {
     public static void main(String[] args) {
         try {
             zooKeeper =
-                    new ZooKeeper("192.168.0.138:2181",5000,new ZookeeperGetDataASync());
+                    new ZooKeeper("192.168.112.144:2181",5000,new ZookeeperGetDataASync());
 
             System.out.println(zooKeeper.getState());
             connectedSemapthore.await();
